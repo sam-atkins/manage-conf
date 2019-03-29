@@ -1,0 +1,14 @@
+{
+  "python.pythonPath": "env/bin/python3.6",
+  "python.formatting.provider": "black",
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false
+  },
+  "python.unitTest.pyTestArgs": [
+    "tests"
+  ],
+  "python.unitTest.unittestEnabled": false,
+  "python.unitTest.nosetestsEnabled": false,
+  "python.unitTest.pyTestEnabled": true
+}
