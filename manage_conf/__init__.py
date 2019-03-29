@@ -27,7 +27,6 @@ class RemoteSettings:
                 raise RemoteConfigurationJSONDecodeError(
                     f"value of item {name} is not valid JSON"
                 )
-
         else:
             return value
 

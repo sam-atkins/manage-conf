@@ -1,7 +1,7 @@
 import pytest
 
 from manage_conf import __version__
-from manage_conf import RemoteSettings
+from manage_conf import RemoteSettings, RemoteConfigurationJSONDecodeError
 
 
 @pytest.fixture(scope="class")
@@ -21,3 +21,10 @@ def test__deserialise_method_json_loads(remote_settings_class):
     deserialised_value = remote_settings_class._deserialise(name, value)
     assert isinstance(deserialised_value, str)
     assert deserialised_value == "['uglyurl.execute-api.us-east-1.amazonaws.com']"
+
+
+def test__deserialise_method_raises_if_invalid_json(remote_settings_class):
+    with pytest.raises(RemoteConfigurationJSONDecodeError):
+        name = "ALLOWED_HOSTS"
+        value = "'['uglyurl.execute-api.us-east-1.amazonaws.com']'"
+        remote_settings_class._deserialise(name, value)
