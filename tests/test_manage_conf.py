@@ -30,6 +30,13 @@ def test__deserialise_method_raises_if_invalid_json(remote_settings_class):
         remote_settings_class._deserialise(name, value)
 
 
+def test__deserialise_method_returns_if_not_str(remote_settings_class):
+    name = "ALLOWED_HOSTS"
+    value = ["uglyurl.execute-api.us-east-1.amazonaws.com"]
+    deserialised_value = remote_settings_class._deserialise(name, value)
+    assert value == deserialised_value
+
+
 @pytest.mark.parametrize(
     "value",
     [
@@ -41,3 +48,14 @@ def test__evaluate_method_returns_python_type(remote_settings_class, value):
     name = "ALLOWED_HOSTS"
     python_type = remote_settings_class._evaluate(name, value)
     assert isinstance(python_type, list)
+
+
+@pytest.mark.parametrize(
+    "value", ["\"['uglyurl.execute-api.us-east-1.amazonaws.com']\"", "text"]
+)
+def test__evaluate_method_captures_exception_returns_input_value(
+    remote_settings_class, value
+):
+    name = "key"
+    python_type = remote_settings_class._evaluate(name, value)
+    assert isinstance(python_type, str)
