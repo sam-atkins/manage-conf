@@ -25,6 +25,9 @@ poetry install
 # run tests
 pytest -vv
 
-# coverage report
+# coverage report in the Terminal
 pytest --cov=manage_conf tests/
+
+# coverage report in HTML
+pytest --cov-report html --cov=manage_conf tests/
 ```
