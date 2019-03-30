@@ -75,3 +75,9 @@ def test_get_remote_params_returns_response(boto_mock, remote_settings_class):
         "SECRET_KEY": "not-a-good-secret",
         "STATICFILES_STORAGE": "S3-storage",
     }
+
+
+@patch("boto3.client", side_effect=Exception)
+def test_get_remote_params_fails_and_raises(boto_mock, remote_settings_class):
+    with pytest.raises(Exception):
+        remote_settings_class.get_remote_params("/portal/dev/")
