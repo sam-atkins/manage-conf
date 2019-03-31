@@ -6,6 +6,11 @@ import os
 import anyconfig
 import boto3
 
+from manage_conf.exceptions import (
+    BotoRequestFailureError,
+    RemoteConfigurationJSONDecodeError,
+)
+
 
 class RemoteSettings:
     """Methods to fetch and transform remote settings"""
@@ -76,11 +81,7 @@ class RemoteSettings:
                 response[name] = evaluated_value
             return response
         except Exception as ex:
-            raise Exception from ex
-
-
-class RemoteConfigurationJSONDecodeError(Exception):
-    """Raised when a Parameter Store item fails to be deserialised"""
+            raise BotoRequestFailureError from ex(f"Boto response failed: {ex}")
 
 
 class Config:

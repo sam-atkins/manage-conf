@@ -3,7 +3,11 @@ from unittest.mock import patch, MagicMock
 import pytest
 
 from manage_conf import __version__
-from manage_conf import RemoteSettings, RemoteConfigurationJSONDecodeError
+from manage_conf import RemoteSettings
+from manage_conf.exceptions import (
+    BotoRequestFailureError,
+    RemoteConfigurationJSONDecodeError,
+)
 from tests.datasets import BOTO_PAYLOAD
 
 
@@ -68,7 +72,6 @@ def test__evaluate_method_captures_exception_returns_input_value(
 def test_get_remote_params_returns_response(boto_mock, remote_settings_class):
     mock_boto_payload = MagicMock(return_value=BOTO_PAYLOAD)
     boto_mock.return_value.get_parameters_by_path = mock_boto_payload
-
     response = remote_settings_class.get_remote_params("/portal/dev/")
     assert response == {
         "ALLOWED_HOSTS": ["uglyurl.execute-api.us-east-1.amazonaws.com"],
@@ -77,7 +80,7 @@ def test_get_remote_params_returns_response(boto_mock, remote_settings_class):
     }
 
 
-@patch("boto3.client", side_effect=Exception)
-def test_get_remote_params_fails_and_raises(boto_mock, remote_settings_class):
-    with pytest.raises(Exception):
+@patch("boto3.client", side_effect=BotoRequestFailureError)
+def test_get_remote_params_boto_fails_and_raises(boto_mock, remote_settings_class):
+    with pytest.raises(BotoRequestFailureError):
         remote_settings_class.get_remote_params("/portal/dev/")
