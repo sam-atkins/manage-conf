@@ -14,17 +14,20 @@ The config object merges in config, overriding any previous key/value pairs, in 
 - stage config: {stage}.yml
 - remote config: remote_settings (AWS param store)
 
+Available to download as a package on [PyPi](https://pypi.org/project/manage-conf/).
+
 ### Settings Files
 
 Set an environment variable with the key name `project_config_dir`. It is important this is set before the package is imported. The value of `project_config_dir` should be the location of your `/settings` folder.
 
 Set-up your settings folder, adding in configuration to the appropriate file.
 
-
+```
 -- /settings
----- default.yml
----- {stage}.yml
----- {stage}.yml
+----          default.yml
+----          {stage}.yml
+----          {stage}.yml
+```
 
 Example configuration:
 
@@ -45,9 +48,7 @@ Add parameters in your AWS account with paths that match this pattern:
 
 `/{project_name}/{stage}/`
 
-The package will fetch all parameters that have this base path.
-
-If you set `use_remote_settings: true` in a stage.yml config file, the package will attempt to fetch the parameters from the store. Make sure you have the appropriate IAM permissions set up.
+If you set `use_remote_settings: true` in a stage.yml config file, the package will attempt to fetch the parameters from the store that have this base path.
 
 Using the example configuration above, the path would be:
 
