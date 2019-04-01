@@ -61,7 +61,7 @@ Using the example configuration above, the path would be:
 Make sure you set `project_config_dir` before importing.
 
 ```python
-from manage_config import Config, get_config
+from manage_conf import Config, get_config
 
 SECRET_KEY = get_config("SECRET_KEY")
 DEBUG = get_config("DEBUG", True)
