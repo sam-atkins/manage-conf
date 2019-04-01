@@ -14,7 +14,7 @@ The config object merges in config, overriding any previous key/value pairs, in 
 - stage config: {stage}.yml
 - remote config: remote_settings (AWS param store)
 
-Available to download as a package on [PyPi](https://pypi.org/project/manage-conf/).
+Available to download as a package on [PyPi](https://pypi.org/project/manage_conf/).
 
 ### Settings Files
 
