@@ -1,5 +1,6 @@
 # Manage Conf
 
+[![CircleCI](https://circleci.com/gh/sam-atkins/manage-conf/tree/master.svg?style=svg)](https://circleci.com/gh/sam-atkins/manage-conf/tree/master)
 <a href="https://github.com/ambv/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 
 **WIP**
