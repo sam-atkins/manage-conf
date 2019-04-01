@@ -18,7 +18,7 @@ def remote_settings_class():
 
 
 def test_version():
-    assert __version__ == "0.1.0"
+    assert __version__ == "0.1.1"
 
 
 def test__deserialise_method_json_loads(remote_settings_class):
