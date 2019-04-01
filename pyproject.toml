@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "manage-conf"
 version = "0.1.0"
-description = ""
+description = "Builds a config object based on environment variables, settings files and (optional) parameters stored in AWS System Manager Parameter Store."
 authors = ["Sam Atkins <samatkins@outlook.com>"]
 
 [tool.poetry.dependencies]
