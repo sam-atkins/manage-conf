@@ -1,6 +1,6 @@
 # Manage Conf
 
-[![CircleCI](https://circleci.com/gh/sam-atkins/manage_conf/tree/master.svg?style=svg)](https://circleci.com/gh/sam-atkins/manage_conf/tree/master)
+[![CircleCI](https://circleci.com/gh/sam-atkins/manageconf/tree/master.svg?style=svg)](https://circleci.com/gh/sam-atkins/manageconf/tree/master)
 <a href="https://github.com/ambv/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 
 ## Description
@@ -14,7 +14,7 @@ The config object merges in config, overriding any previous key/value pairs, in 
 - stage config: {stage}.yml
 - remote config: remote_settings (AWS param store)
 
-Available to download as a package on [PyPi](https://pypi.org/project/manage_conf/).
+Available to download as a package on [PyPi](https://pypi.org/project/manageconf/).
 
 ### Settings Files
 
@@ -61,7 +61,7 @@ Using the example configuration above, the path would be:
 Make sure you set `project_config_dir` before importing.
 
 ```python
-from manage_conf import Config, get_config
+from manageconf import Config, get_config
 
 SECRET_KEY = get_config("SECRET_KEY")
 DEBUG = get_config("DEBUG", True)
@@ -91,8 +91,8 @@ poetry install
 pytest -vv
 
 # coverage report in the Terminal
-pytest --cov=manage_conf tests/
+pytest --cov=manageconf tests/
 
 # coverage report in HTML
-pytest --cov-report html --cov=manage_conf tests/
+pytest --cov-report html --cov=manageconf tests/
 ```
