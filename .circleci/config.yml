@@ -22,7 +22,7 @@ jobs:
             - "/usr/local/lib/python3.6/site-packages"
       - run:
           name: run tests
-          command: poetry run pytest -vv --cov=manage_conf tests/
+          command: poetry run pytest -vv --cov=manageconf tests/
       - run:
           name: generate coverage reports
           command: poetry run coverage html -d artifacts

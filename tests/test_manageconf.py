@@ -2,9 +2,9 @@ from unittest.mock import patch, MagicMock
 
 import pytest
 
-from manage_conf import __version__
-from manage_conf import RemoteSettings
-from manage_conf.exceptions import (
+from manageconf import __version__
+from manageconf import RemoteSettings
+from manageconf.exceptions import (
     BotoRequestFailureError,
     RemoteConfigurationJSONDecodeError,
 )
@@ -18,7 +18,7 @@ def remote_settings_class():
 
 
 def test_version():
-    assert __version__ == "0.1.4"
+    assert __version__ == "0.1.5"
 
 
 def test__deserialise_method_json_loads(remote_settings_class):

@@ -1,4 +1,4 @@
-__version__ = "0.1.4"
+__version__ = "0.1.5"
 
 import ast
 import json
@@ -7,7 +7,7 @@ import os
 import anyconfig
 import boto3
 
-from manage_conf.exceptions import (
+from manageconf.exceptions import (
     BotoRequestFailureError,
     RemoteConfigurationJSONDecodeError,
 )
