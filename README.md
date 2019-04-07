@@ -22,11 +22,12 @@ Set an environment variable with the key name `project_config_dir`. It is import
 
 Set-up your settings folder, adding in configuration to the appropriate file.
 
-```
--- /settings
-----          default.yml
-----          {stage}.yml
-----          {stage}.yml
+```bash
+.
+├── settings                 <-- Settings folder
+│   ├── default.yml          <-- default configuration
+│   ├── {stage}.yml          <-- stage specific configuration e.g. `local`
+│   └── {stage}.yml          <-- stage specific configuration e.g. `dev`
 ```
 
 Example configuration:
