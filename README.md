@@ -44,7 +44,7 @@ Example configuration:
 ```json
 {
   "DEBUG": "True",
-  "use_remote_settings": "False"
+  "local_or_remote_settings": "local"
 }
 ```
 
@@ -54,7 +54,7 @@ Local config object:
 {
     "project_name": "example-project",
     "DEBUG": "True,
-    "use_remote_settings": "False"
+    "local_or_remote_settings": "local"
 }
 ```
 
@@ -62,7 +62,7 @@ Local config object:
 
 ```json
 {
-  "use_remote_settings": "True"
+  "local_or_remote_settings": "remote"
 }
 ```
 
@@ -72,7 +72,7 @@ Dev config object:
 {
     "project_name": "example-project",
     "DEBUG": "True",
-    "use_remote_settings": "True",
+    "local_or_remote_settings": "remote",
     # and any remote settings from AWS param store
 }
 ```
@@ -84,7 +84,7 @@ Add parameters in your AWS account with paths that match this pattern:
 
 `/{project_name}/{stage}/`
 
-If you set `"use_remote_settings": "True"` in a remote `{stage}.json` config file, the package will attempt to fetch the parameters from the store that have this base path.
+If you set `"local_or_remote_settings": "remote"` in a remote `{stage}.json` config file, the package will attempt to fetch the parameters from the store that have this base path.
 
 Using the example configuration above, the path would be:
 
