@@ -10,8 +10,8 @@ Builds a config object based on environment variables, settings files and (optio
 The config object merges in config, overriding any previous key/value pairs, in the following order:
 
 - ENV
-- default config: default.yml
-- stage config: {stage}.yml
+- default config: default.json
+- stage config: {stage}.json
 - remote config: remote_settings (AWS param store)
 
 Available to download as a package on [PyPi](https://pypi.org/project/manageconf/).
@@ -24,24 +24,59 @@ Set-up your settings folder, adding in configuration to the appropriate file.
 
 ```bash
 .
-├── settings                 <-- Settings folder
-│   ├── default.yml          <-- default configuration
-│   ├── {stage}.yml          <-- stage specific configuration e.g. `local`
-│   └── {stage}.yml          <-- stage specific configuration e.g. `dev`
+├── settings                  <-- Settings folder
+│   ├── default.json          <-- default configuration
+│   ├── {stage}.json          <-- stage specific configuration e.g. `local`
+│   └── {stage}.json          <-- stage specific configuration e.g. `dev`
 ```
 
 Example configuration:
 
-```yaml
-# default.yml
-project_name: example-project
-
-# local.yml
-use_remote_settings: false
-
-# dev.yml
-use_remote_settings: true
+#### default.json
+```json
+{
+  "project_name": "example-project",
+  "DEBUG": "False"
+}
 ```
+
+##### local.json
+```json
+{
+  "DEBUG": "True",
+  "use_remote_settings": "False"
+}
+```
+
+Local config object:
+
+```python
+{
+    "project_name": "example-project",
+    "DEBUG": "True,
+    "use_remote_settings": "False"
+}
+```
+
+##### dev.json
+
+```json
+{
+  "use_remote_settings": "True"
+}
+```
+
+Dev config object:
+
+```python
+{
+    "project_name": "example-project",
+    "DEBUG": "True",
+    "use_remote_settings": "True",
+    # and any remote settings from AWS param store
+}
+```
+
 
 ### AWS
 
@@ -49,7 +84,7 @@ Add parameters in your AWS account with paths that match this pattern:
 
 `/{project_name}/{stage}/`
 
-If you set `use_remote_settings: true` in a stage.yml config file, the package will attempt to fetch the parameters from the store that have this base path.
+If you set `"use_remote_settings": "True"` in a remote `{stage}.json` config file, the package will attempt to fetch the parameters from the store that have this base path.
 
 Using the example configuration above, the path would be:
 
@@ -59,13 +94,15 @@ Using the example configuration above, the path would be:
 
 ### Usage
 
-Make sure you set `project_config_dir` before importing.
+Make sure `project_config_dir` is set before importing the library.
 
 ```python
 from manageconf import Config, get_config
 
 SECRET_KEY = get_config("SECRET_KEY")
 DEBUG = get_config("DEBUG", True)
+# default values are an optional second arg and will
+# be used if the param cannot be found in the config object
 ```
 
 ## Development

@@ -1,4 +1,4 @@
-__version__ = "0.1.5"
+__version__ = "1.0.0"
 
 import ast
 import json
@@ -101,8 +101,8 @@ class Config:
         """Makes the conf object, merging in the following order:
 
             - ENV
-            - default config: default.yml
-            - stage config: {stage}.yml
+            - default config: default.json
+            - stage config: {stage}.json
             - remote config: remote_settings
         """
         anyconfig.merge(cls.conf, os.environ.copy())
@@ -110,13 +110,13 @@ class Config:
         project_config_dir = cls.conf.get("project_config_dir", ".")
 
         project_default_config_file_path = os.path.join(
-            project_config_dir, "default.yml"
+            project_config_dir, "default.json"
         )
         if os.path.exists(project_default_config_file_path):
             anyconfig.merge(cls.conf, anyconfig.load(project_default_config_file_path))
 
         project_stage_config_file_path = os.path.join(
-            project_config_dir, f"{stage}.yml"
+            project_config_dir, f"{stage}.json"
         )
         if os.path.exists(project_stage_config_file_path):
             anyconfig.merge(cls.conf, anyconfig.load(project_stage_config_file_path))

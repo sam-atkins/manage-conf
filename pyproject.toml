@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "manageconf"
-version = "0.1.5"
+version = "1.0.0"
 description = "Builds a config object based on environment variables, settings files and (optional) parameters stored in AWS System Manager Parameter Store."
 repository = "https://github.com/sam-atkins/manageconf"
 license = "MIT"
