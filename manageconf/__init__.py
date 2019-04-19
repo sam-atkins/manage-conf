@@ -1,4 +1,4 @@
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 
 import ast
 import json
@@ -121,19 +121,14 @@ class Config:
         if os.path.exists(project_stage_config_file_path):
             anyconfig.merge(cls.conf, anyconfig.load(project_stage_config_file_path))
 
-        remote_settings = cls.conf.get("local_or_remote_settings", None)
+        remote_settings = cls.conf.get("use_remote_settings", None)
+
         if remote_settings:
-            try:
-                if remote_settings.lower() == "remote":
-                    project_name = cls.conf.get("project_name", None)
-                    parameters_path = f"/{project_name}/{stage}/"
-                    remote_settings_class = cls.create_remote_settings_class()
-                    remote_conf = remote_settings_class.get_remote_params(
-                        parameters_path
-                    )
-                    anyconfig.merge(cls.conf, remote_conf)
-            except (AttributeError, TypeError):
-                raise AssertionError("Input config variables should be strings")
+            project_name = cls.conf.get("project_name", None)
+            parameters_path = f"/{project_name}/{stage}/"
+            remote_settings_class = cls.create_remote_settings_class()
+            remote_conf = remote_settings_class.get_remote_params(parameters_path)
+            anyconfig.merge(cls.conf, remote_conf)
 
 
 def get_config(key_name, default=None):
