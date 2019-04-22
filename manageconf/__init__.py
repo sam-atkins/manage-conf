@@ -3,6 +3,7 @@ __version__ = "1.0.2"
 import ast
 import json
 import os
+from typing import Any
 
 import anyconfig
 import boto3
@@ -54,7 +55,7 @@ class RemoteSettings:
         else:
             return value
 
-    def get_remote_params(self, parameters_path):
+    def get_remote_params(self, parameters_path: str):
         """Fetches remote config from AWS Systems Manager Param Store
 
         Args:
@@ -92,6 +93,7 @@ class Config:
 
     @classmethod
     def create_remote_settings_class(cls):
+        """Returns an instantiated RemoteSettings class"""
         setting_class = RemoteSettings
 
         return setting_class()
@@ -131,11 +133,21 @@ class Config:
             anyconfig.merge(cls.conf, remote_conf)
 
 
-def get_config(key_name, default=None):
+def get_config(key_name: str, default: Any = None) -> Any:
+    """Provides a get method API to return a param if available in AWS Param store
+
+    Args:
+        key_name (str): the name of the param to fetch from AWS Param store
+        default (Any): default value to return if key_name cannot be found
+
+    Returns:
+        str: param fetched from AWS Param store
+    """
     return Config.conf.get(key_name, default)
 
 
 def make_settings():
+    """Upon module initialisation calls Config.make() to build the config object"""
     Config.make()
 
 
