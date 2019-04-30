@@ -105,7 +105,8 @@ class Config:
             - ENV
             - default config: default.json
             - stage config: {stage}.json
-            - remote config: remote_settings
+            - remote config: remote_settings (if True)
+            - global service directory config: global_service_directory (if True)
         """
         anyconfig.merge(cls.conf, os.environ.copy())
         stage = cls.conf.get("stage", None)
@@ -123,14 +124,23 @@ class Config:
         if os.path.exists(project_stage_config_file_path):
             anyconfig.merge(cls.conf, anyconfig.load(project_stage_config_file_path))
 
-        remote_settings = cls.conf.get("use_remote_settings", None)
-
+        remote_settings = cls.conf.get("use_remote_settings")
         if remote_settings:
-            project_name = cls.conf.get("project_name", None)
+            project_name = cls.conf.get("project_name")
             parameters_path = f"/{project_name}/{stage}/"
             remote_settings_class = cls.create_remote_settings_class()
             remote_conf = remote_settings_class.get_remote_params(parameters_path)
             anyconfig.merge(cls.conf, remote_conf)
+
+        global_service_directory = cls.conf.get("global_service_directory")
+        if global_service_directory:
+            remote_settings_class = cls.create_remote_settings_class()
+            global_parameters_path = f"/global/{stage}/service_directory/"
+            service_dir = remote_settings_class.get_remote_params(
+                global_parameters_path
+            )
+            service_dir_dict = {"service_directory": service_dir}
+            anyconfig.merge(cls.conf, service_dir_dict)
 
 
 def get_config(key_name: str, default: Any = None) -> Any:
