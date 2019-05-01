@@ -78,7 +78,9 @@ Dev config object:
 ```
 
 
-### AWS
+### AWS Param Store
+
+#### Project config
 
 Add parameters in your AWS account with paths that match this pattern:
 
@@ -89,6 +91,16 @@ If you set `"use_remote_settings": true` in a remote `{stage}.json` config file,
 ```
 /example-project/dev/
 ```
+
+#### Global service directory config
+
+Add parameters in your AWS account with paths that match this pattern:
+
+`/global/{stage}/service_directory/`
+
+Set `"global_service_directory": true` in a remote `{stage}.json` config file.
+
+Global service directory config for the `{stage}` will be merged in.
 
 ### Usage
 
