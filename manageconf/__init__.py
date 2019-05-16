@@ -1,4 +1,4 @@
-__version__ = "1.1.0"
+__version__ = "1.1.1"
 
 import ast
 import json
@@ -83,7 +83,7 @@ class RemoteSettings:
                 response[name] = evaluated_value
             return response
         except Exception as ex:
-            raise BotoRequestFailureError from ex(f"Boto response failed: {ex}")
+            raise BotoRequestFailureError from ex
 
 
 class Config:
@@ -144,7 +144,7 @@ class Config:
 
 
 def get_config(key_name: str, default: Any = None) -> Any:
-    """Provides a get method API to return a param if available in AWS Param store
+    """Gets a param from the merged config dict
 
     Args:
         key_name (str): the name of the param to fetch from AWS Param store
