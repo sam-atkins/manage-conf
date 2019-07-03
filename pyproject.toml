@@ -17,7 +17,7 @@ boto3 = "^1.9"
 [tool.poetry.dev-dependencies]
 black = {version = "^19.3b0",allows-prereleases = true}
 flake8 = "^3.7"
-pytest = "^3.0"
+pytest = "^5.0"
 pytest-cov = "^2.6"
 
 [tool.black]
