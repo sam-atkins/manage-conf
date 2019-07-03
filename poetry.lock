@@ -4,7 +4,7 @@ description = "Library provides common APIs to load and dump configuration files
 name = "anyconfig"
 optional = false
 python-versions = "*"
-version = "0.9.8"
+version = "0.9.9"
 
 [package.dependencies]
 setuptools = "*"
@@ -274,7 +274,7 @@ content-hash = "9d264e7303b73a140e065bdded579e722f6f1e5dc4a6f38f4739c3e43200ed4d
 python-versions = "^3.6"
 
 [metadata.hashes]
-anyconfig = ["9de54c3252240b3c562e25ef070e883c266b7daad8c8bc4d5d604855edc7d739"]
+anyconfig = ["621b0b5f08efd2e375596b50f79943200d90f0397fed55cf0d2f5f484e005e9d"]
 appdirs = ["9e5896d1372858f8dd3344faf4e5014d21849c756c8d5701f78f8a103b372d92", "d8b24664561d0d34ddfaec54636d502d7cea6e29c3eaf68f3df6180863e2166e"]
 atomicwrites = ["03472c30eb2c5d1ba9227e4c2ca66ab8287fbfbbda3888aa93dc2e28fc6811b4", "75a9445bac02d8d058d5e1fe689654ba5a6556a1dfd8ce6ec55a0ed79866cfa6"]
 attrs = ["69c0dbf2ed392de1cb5ec704444b08a5ef81680a61cb899dc08127123af36a79", "f0b870f674851ecbfbbbd364d6b5cbdff9dcedbc7f3f5e18a6891057f21fe399"]
